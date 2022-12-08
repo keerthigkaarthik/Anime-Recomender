@@ -1,0 +1,99 @@
+{% extends 'templates/main.html' %}
+{% block content %}
+{% load static %}
+
+    <link rel='stylesheet' type="text/css" href="{% static 'profile12.css' %}">
+    <div class="color-change-2x">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    {% for message in messages %}
+    <h2>{{message}}</h2>
+    {% endfor %}
+    <div class ='submit_anime_rating'>
+        <h2>Update profile <a href = '/update'class='curve'>Here</a></h2>
+    </div>
+    <div class="tier-list">
+        <table >
+            <tr>
+                <td id="score5">
+                    5
+                </td>
+                    
+                <td id="anime5">
+                    {% for i in five %}
+                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td id="score4">
+                    4
+                </td>
+                <td id="anime4">
+                    {% for i in four %}
+                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td id="score3">
+                    3
+                </td>
+                    
+                <td id="anime3">
+                    {% for i in three %}
+                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td id="score2">
+                    2
+                </td>
+                    
+                <td id="anime2">
+                    {% for i in two %}
+                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td id="score1">
+                    1
+                </td>
+                    
+                <td id="anime1">
+                    {% for i in one %}
+                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                        
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+        <div class = 'anime_to_watch'>
+            <h2>Profile: </h2>
+            <div class = 'anime_to_watch1'>
+             <p class="text-shadow-drop-center">Username: <span class = "text-flicker-in-glow">{{user.username}}</span></p>
+            </div>
+            
+            <div class = 'anime_to_watch1'>
+              <p class="text-shadow-drop-center">Bio:  <span class="text-flicker-in-glow">{{user.profile.bio}}</span></p> 
+            </div>
+  
+            <div class = 'anime_to_watch1'>
+              <p class="text-shadow-drop-center">Birth_date: <span class="text-flicker-in-glow">{{user.profile.birth_date}}</span></p>
+            </div>
+  
+            <div class = 'anime_to_watch1'>
+              <p class="text-shadow-drop-center">Location: <span class="text-flicker-in-glow">{{user.profile.location}}</span></p>
+            </div>
+            
+            
+        </div>   
+            
+    </div>
+    </div>
+{% endblock %}

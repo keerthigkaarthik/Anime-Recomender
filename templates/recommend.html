@@ -1,0 +1,21 @@
+{% extends 'templates/main.html' %}
+{% block content %}
+{% load static %}
+
+<h3>Recommendations</h3>
+
+<div class="recommended">
+
+    {% for i in q %}
+
+    <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+
+    {% endfor %}
+
+</div>
+
+
+
+
+
+{% endblock %}
