@@ -1,0 +1,1 @@
+web: gunicorn anime_project.wsgi --log-file -
