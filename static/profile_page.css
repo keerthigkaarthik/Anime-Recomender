@@ -1,0 +1,179 @@
+.profile-picture img{
+    position: absolute;
+    width: 10%;
+    margin-bottom: 4rem;
+    display: block;
+    height: 15%;
+    top: 15%;
+    left: 15%;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: auto;
+    background-color: rgba(0, 0, 0, 7);
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+
+.logo {
+    font-family: 'Shizuru', cursive;
+    display: flex;
+    font-size: 3.5rem;
+    width: auto;
+    height: auto;
+}
+
+.logo a{
+    color: white;
+    text-decoration: none;
+    
+}
+
+.nav_bar{
+    font-family: 'poppins';
+    font-size: 1.5rem;
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+.nav_bar li{
+    display: inline-block;
+    list-style: none;
+}
+
+.nav_bar li a{
+    padding: 1.25rem;
+    width: auto;
+    height: auto;
+}
+
+.nav_bar li a:hover{
+    text-decoration: none;
+    color: tomato;
+}
+
+.profile,
+.login {
+    font-family: 'Lobster',cursive;
+    width: auto;
+    height: auto;
+}
+
+.anime_table {
+    position: absolute;
+    display:  grid;
+    top: 40%;
+    left: 40%;
+    grid-template-columns: auto auto;
+    grid-template-areas: 
+    'one two'
+    'three four'
+    'five six'
+    'seven eight'
+    'nine ten';
+    width: auto;
+    height: auto;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    padding: 1rem;
+}
+
+.anime_table img{
+    height: 80px;
+    width: 50px;
+    margin: 0.5rem;
+} 
+
+.score1 {
+    width: auto;
+    border-style: solid;
+    grid-area: one;
+    height: auto;
+    padding: 0.5rem;
+}
+
+.score2 {
+    width: auto;
+    border-style: solid;
+    grid-area: three;
+    height: auto;
+    padding: 0.5rem;
+}
+
+.score3 {
+    width: auto;
+    border-style: solid;
+    grid-area: five;
+    height: auto;
+    padding: 0.5rem;
+}
+
+.score4 {
+    width: auto;
+    border-style: solid;
+    grid-area: seven;
+    height: auto;
+    padding: 0.5rem;
+}
+
+.score5 {
+    width: auto;
+    border-style: solid;
+    grid-area: nine;
+    height: auto;
+    padding: 0.5rem;
+}
+
+.pictures1{
+    grid-area: two;
+    display: flex;
+    border-style: solid;
+    width: auto;
+    height: auto;
+    
+}
+
+.pictures2{
+    grid-area: four;
+    border-style: solid;
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.pictures3{
+    grid-area: six;
+    border-style: solid;
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.pictures4{
+    grid-area: eight;
+    border-style: solid;
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.pictures5{
+    grid-area: ten;
+    border-style: solid;
+    display: flex;
+    width: auto;
+    height: auto;
+}
+

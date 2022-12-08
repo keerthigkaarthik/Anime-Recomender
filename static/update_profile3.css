@@ -1,0 +1,164 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: auto;
+    background-color: rgba(0, 0, 0, 7);
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+
+.logo {
+    font-family: 'Shizuru', cursive;
+    display: flex;
+    font-size: 3rem;
+    width: auto;
+    height: auto;
+}
+
+.logo a{
+    color: white;
+    text-decoration: none;
+    
+}
+
+.nav_bar{
+    font-family: 'poppins';
+    font-size: 1rem;
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+
+@media (min-width:40rem) {
+    .nav_bar {
+        font-size: 1.5rem
+    }
+
+
+    
+}
+
+.nav_bar li{
+    display: inline-block;
+    list-style: none;
+}
+
+.nav_bar li a{
+    padding: 1.25rem;
+    width: auto;
+    height: auto;
+}
+
+.nav_bar li a:hover{
+    text-decoration: none;
+    color: tomato;
+}
+
+.profile,
+.login {
+    font-family: 'Lobster',cursive;
+    width: auto;
+    height: auto;
+}
+
+@media (min-width: 40rem) {
+    .profile:hover,
+    .login:hover {
+        background: #FFF8DC;
+        border-radius: 2px;
+        text-decoration: none;
+        color: tomato;
+    }
+    .centered a {
+        font-size: 1.5rem;
+    }
+
+}
+
+
+.centered a{
+    position: absolute;
+    left: 50%;
+    bottom: 35%;
+    transform: translate(-50%, -50%);
+}
+
+.centered a{
+    background-color: #0288d1;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 3px;
+    font-family: 'Lobster',cursive;
+}
+
+@media (min-width:40rem) {
+    .centered a {
+        font-size: 1.5rem;
+        bottom: 30%;
+    }
+}
+
+
+
+.centered a:hover{
+    text-decoration: none;
+    color: tomato
+}
+
+.centered p{
+    font-size: 0.8rem;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    position: absolute;
+    left: 50%;
+    bottom: 25%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+}
+
+@media (min-width:40rem) {
+    .centered p {
+        bottom: 19%;
+        font-size: 1.4rem;
+    }
+    .logo {
+        font-size: 3.5rem;
+    }
+}
+
+
+
+
+
+
+
+.update,
+.header,
+.centralise {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    height: auto;
+    justify-items: center;
+    flex-shrink: 1;
+}
+
+
+
+.update {
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.25rem;
+}

@@ -1,0 +1,677 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: auto;
+    background-color: rgba(0, 0, 0, 7);
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+
+.logo {
+    font-family: 'Shizuru', cursive;
+    display: flex;
+    font-size: 3.5rem;
+    width: auto;
+    height: auto;
+}
+
+.logo a{
+    color: white;
+    text-decoration: none;
+    
+}
+
+.nav_bar{
+    font-family: 'poppins';
+    font-size: 1.5rem;
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+.nav_bar li{
+    display: inline-block;
+    list-style: none;
+}
+
+.nav_bar li a{
+    padding: 1.25rem;
+    width: auto;
+    height: auto;
+}
+
+.nav_bar li a:hover{
+    text-decoration: none;
+    color: tomato;
+}
+
+.profile,
+.login {
+    font-family: 'Lobster',cursive;
+    width: auto;
+    height: auto;
+}
+
+.submit {
+    position: relative;
+    right: auto;
+}
+
+.autocomplete-input {
+    width: 330px;
+}
+
+.results {
+    margin-bottom: -170px;
+    z-index: 1000;
+    width: 330px;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.autocomplete_result {
+    background-color: white;
+    height: 100px;
+    width: 310px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.autocomplete_result:hover {
+    background-color: lightblue;
+}
+
+.autocomplete_result img {
+    /* position: absolute;
+    left: 0%; */
+    /* margin-right: 25px; */
+    float: left;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.autocomplete_result h6 {
+    position: relative;
+    top: 5%;
+    left: auto;
+    color: black;
+    text-decoration: none;
+}
+
+.autocomplete_result p {
+    position: relative;
+    bottom: 5%;
+    left: auto;
+    color: black;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+.carousel-item img{
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+ 
+@media (min-width: 40rem) {
+    .profile:hover,
+    .login:hover {
+        background: #FFF8DC;
+        border-radius: 2px;
+        text-decoration: none;
+        color: tomato;
+    }
+
+
+}
+
+
+.centered a{
+    position: absolute;
+    left: 50%;
+    bottom: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.centered a{
+    background-color: #0000ff;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 3px;
+    font-family: 'Lobster',cursive;
+}
+
+.centered a:hover{
+    text-decoration: none;
+}
+
+.centered p{
+    font-size: 1.4rem;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translate(-50%, -50%);
+}
+
+.reference {
+    max-width: max-content;
+    height: auto;
+    position: relative;
+  }
+  
+.reference::before,
+.reference::after {
+    content: '';
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+  
+.reference::before { 
+    background: rgba(0, 0, 0, 7);
+    animation: 
+      typewriter 4s steps(11) 1s forwards
+      ;
+}
+  
+
+  
+@keyframes typewriter {
+    to {
+      left: 100%;
+    }
+}
+  
+@keyframes blink {
+    to {
+      background: transparent;
+    }
+}
+.fade-in {
+    opacity: 0;
+    transition: opacity 250ms ease-in
+}
+.fade-in.appear {
+    opacity: 1;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: auto;
+    background-color: rgba(0, 0, 0, 7);
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+
+.logo {
+    font-family: 'Shizuru', cursive;
+    display: flex;
+    font-size: 3.5rem;
+    width: auto;
+    height: auto;
+}
+
+.logo a{
+    color: white;
+    text-decoration: none;
+    
+}
+
+.nav_bar{
+    font-family: 'poppins';
+    font-size: 1.5rem;
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+.nav_bar li{
+    display: inline-block;
+    list-style: none;
+}
+
+.nav_bar li a{
+    padding: 1.25rem;
+    width: auto;
+    height: auto;
+}
+
+.nav_bar li a:hover{
+    text-decoration: none;
+    color: tomato;
+}
+
+.profile,
+.login {
+    font-family: 'Lobster',cursive;
+    width: auto;
+    height: auto;
+}
+
+.submit {
+    position: relative;
+    right: auto;
+}
+
+.autocomplete-input {
+    width: 330px;
+}
+
+.results {
+    margin-bottom: -170px;
+    z-index: 1000;
+    width: 330px;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.autocomplete_result {
+    background-color: white;
+    height: 100px;
+    width: 310px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.autocomplete_result:hover {
+    background-color: lightblue;
+}
+
+.autocomplete_result img {
+    /* position: absolute;
+    left: 0%; */
+    /* margin-right: 25px; */
+    float: left;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.autocomplete_result h6 {
+    position: relative;
+    top: 5%;
+    left: auto;
+    color: black;
+    text-decoration: none;
+}
+
+.autocomplete_result p {
+    position: relative;
+    bottom: 5%;
+    left: auto;
+    color: black;
+    text-decoration: none;
+}
+
+
+
+.all_anime {
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: auto;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    text-align: justify;
+}
+
+.section1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.anime_data {
+    width: auto;
+    height: auto;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+}
+
+@media (min-width: 40rem) {
+    .all_anime {
+        grid-template-columns: auto auto;
+        
+    }
+    .nav_bar li a:hover{
+        background: #FFF8DC;
+        border-radius: 2px;
+        text-decoration: none;
+        color: tomato;
+    }
+}
+
+@media (max-width: 20rem) {
+    /* add a side bar */
+}
+
+.side {
+  display: flex;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.release {
+    width: auto;
+    height: auto;
+}
+.numofep {
+    width: auto;
+    height: auto;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Lobster', cursive;
+}
+
+.side,
+p,
+.synopsis {
+    font-family:sans-serif;
+    font-size: 1.25rem;
+}
+
+
+.learn_More {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.about-us {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto',sans-serif,'Times New Roman', Times, serif;
+    font-size: 1.25rem;
+}
+
+.rating {
+    text-decoration: underline;
+}
+
+.footer {
+    width: auto;
+    height: auto;
+    display: grid;
+    justify-content: center;
+    gap: 1rem;
+    grid-template-columns: auto auto auto;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 250ms ease-in
+  }
+  .fade-in.appear {
+    opacity: 1;
+  }
+
+
+
+
+
+
+
+
+
+
+
+  *{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    height: auto;
+    background-color: rgba(0, 0, 0, 7);
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+
+
+.logo {
+    font-family: 'Shizuru', cursive;
+    display: flex;
+    font-size: 3.5rem;
+    width: auto;
+    height: auto;
+}
+
+.logo a{
+    color: white;
+    text-decoration: none;
+    
+}
+
+.nav_bar{
+    font-family: 'poppins';
+    font-size: 1.5rem;
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+.nav_bar li{
+    display: inline-block;
+    list-style: none;
+}
+
+.nav_bar li a{
+    padding: 1.25rem;
+    width: auto;
+    height: auto;
+}
+
+.nav_bar li a:hover{
+    text-decoration: none;
+    color: tomato;
+}
+
+.profile,
+.login {
+    font-family: 'Lobster',cursive;
+    width: auto;
+    height: auto;
+}
+
+.submit {
+    position: relative;
+    right: auto;
+}
+
+.autocomplete-input {
+    width: 330px;
+}
+
+.results {
+    margin-bottom: -170px;
+    z-index: 1000;
+    width: 330px;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+.autocomplete_result {
+    background-color: white;
+    height: 100px;
+    width: 310px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.autocomplete_result:hover {
+    background-color: lightblue;
+}
+
+.autocomplete_result img {
+    /* position: absolute;
+    left: 0%; */
+    /* margin-right: 25px; */
+    float: left;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.autocomplete_result h6 {
+    position: relative;
+    top: 5%;
+    left: auto;
+    color: black;
+    text-decoration: none;
+}
+
+.autocomplete_result p {
+    position: relative;
+    bottom: 5%;
+    left: auto;
+    color: black;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+.carousel-item img{
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+ 
+@media (min-width: 40rem) {
+    .profile:hover,
+    .login:hover {
+        background: #FFF8DC;
+        border-radius: 2px;
+        text-decoration: none;
+        color: tomato;
+    }
+
+
+}
+
+
+.centered a{
+    position: absolute;
+    left: 50%;
+    bottom: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.centered a{
+    background-color: #0000ff;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 3px;
+    font-family: 'Lobster',cursive;
+}
+
+.centered a:hover{
+    text-decoration: none;
+}
+
+.centered p{
+    font-size: 1.4rem;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translate(-50%, -50%);
+}
+
+.reference {
+    max-width: max-content;
+    height: auto;
+    position: relative;
+  }
+  
+.reference::before,
+.reference::after {
+    content: '';
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+  
+.reference::before { 
+    background: rgba(0, 0, 0, 7);
+    animation: 
+      typewriter 4s steps(11) 1s forwards
+      ;
+}
+  
+
+  
+@keyframes typewriter {
+    to {
+      left: 100%;
+    }
+}
+  
+@keyframes blink {
+    to {
+      background: transparent;
+    }
+}
+.fade-in {
+    opacity: 0;
+    transition: opacity 250ms ease-in
+}
+.fade-in.appear {
+    opacity: 1;
+}
+
