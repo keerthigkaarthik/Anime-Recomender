@@ -220,7 +220,7 @@ def animes(request, id):
                 similar_anime_examples = []
                 
         except Exception as e:
-            logger.error(f"Error getting recommendations: {str(e)}")
+            logger.error(f"Error getting recommendations: {str(e)}, error from view")
             # Continue without recommendations if there's an error
         
         return render(
