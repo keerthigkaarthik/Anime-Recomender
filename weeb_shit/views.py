@@ -208,12 +208,16 @@ def animes(request, id):
         # Get recommendations
         try:
             recc = AnimeRecommender.get_instance()
-            similar_anime_MAL_IDs = recc.get_recommendations(anime_example.MAL_ID, 5)
-            
-            if similar_anime_MAL_IDs:
-                similar_anime_examples = list(
-                    anime_database.objects.filter(MAL_ID__in=similar_anime_MAL_IDs)
-                )
+            if anime_example.MAL_ID:  # Check if MAL_ID exists
+                similar_anime_MAL_IDs = recc.get_recommendations(anime_example.MAL_ID, 5)
+                
+                if similar_anime_MAL_IDs:
+                    similar_anime_examples = list(
+                        anime_database.objects.filter(MAL_ID__in=similar_anime_MAL_IDs)
+                    )
+            else:
+                logger.warning(f"No MAL_ID found for anime with id {id}")
+                similar_anime_examples = []
                 
         except Exception as e:
             logger.error(f"Error getting recommendations: {str(e)}")
