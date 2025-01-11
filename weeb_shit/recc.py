@@ -150,7 +150,7 @@ class AnimeRecommender:
             recommendation_ids = []
             for idx in top_indices:
                 try:
-                    mal_id = int(self._anime_dataset.iloc[idx]['MAL_ID'])
+                    mal_id = int(self._anime_dataset.iloc[idx]['anime_id'])
                     recommendation_ids.append(mal_id)
                 except Exception as e:
                     logger.error(f"Error processing recommendation index {idx}: {str(e)}")
