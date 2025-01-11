@@ -1,11 +1,12 @@
 import numpy as np
 import pandas as pd
+import difflib
 from pathlib import Path
 import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import logging
-import gc 
+import gc  # For garbage collection
 
 logger = logging.getLogger(__name__)
 
@@ -81,26 +82,43 @@ class AnimeRecommender:
                 
                 logger.info(f"Found CSV at: {csv_path}")
                 
-                # Load only necessary columns to save memory
-                columns_needed = ['anime_id', 'Name', 'English name', 'Score', 
-                                'Genres', 'Type', 'Studios', 'Source', 'Episodes']
+                # Custom converter for numeric columns
+                def safe_float_convert(x):
+                    try:
+                        return float(x)
+                    except (ValueError, TypeError):
+                        return 0.0  # Return 0.0 for 'Unknown' or invalid values
                 
+                # Load only necessary columns to save memory
                 try:
                     self._anime_dataset = pd.read_csv(
                         csv_path,
-                        usecols=columns_needed,
+                        converters={
+                            'Score': safe_float_convert,
+                            'Episodes': safe_float_convert
+                        },
                         dtype={
                             'anime_id': 'int32',
-                            'Score': 'float32',
-                            'Episodes': 'float32'
-                        }
+                            'Name': str,
+                            'English name': str,
+                            'Genres': str,
+                            'Type': str,
+                            'Studios': str,
+                            'Source': str
+                        },
+                        na_values=['Unknown', ''],  # Treat 'Unknown' as NA
+                        keep_default_na=True
                     )
+                    
+                    # Fill NA values
+                    self._anime_dataset['Score'] = self._anime_dataset['Score'].fillna(0.0)
+                    self._anime_dataset['Episodes'] = self._anime_dataset['Episodes'].fillna(0.0)
                     
                     # Convert string columns to category to save memory
                     string_columns = ['Name', 'English name', 'Genres', 'Type', 'Studios', 'Source']
                     for col in string_columns:
                         if col in self._anime_dataset.columns:
-                            self._anime_dataset[col] = self._anime_dataset[col].astype('category')
+                            self._anime_dataset[col] = self._anime_dataset[col].fillna('').astype('category')
                             
                 except Exception as e:
                     logger.error(f"Error reading CSV: {str(e)}")
@@ -112,7 +130,6 @@ class AnimeRecommender:
                 logger.info("Similarity matrix calculation complete")
                 
                 self._initialized = True
-                gc.collect()  # Final garbage collection
                 
             except Exception as e:
                 logger.error(f"Failed to initialize recommender: {str(e)}")
@@ -153,14 +170,31 @@ class AnimeRecommender:
             if not self._initialized:
                 raise Exception("Recommender not initialized")
             
-            index_of_anime = self._anime_dataset[self._anime_dataset['anime_id'] == anime_id].index[0]
+            # Find the index for the given anime_id
+            matching_anime = self._anime_dataset[self._anime_dataset['anime_id'] == anime_id]
+            if matching_anime.empty:
+                logger.warning(f"No anime found with ID {anime_id}")
+                return []
+                
+            index_of_anime = matching_anime.index[0]
+            
+            # Get similarity scores
             similarity_scores = self._similarity_matrix[index_of_anime].toarray().flatten()
             
             # Get top indices efficiently
-            top_indices = np.argpartition(similarity_scores, -num_recommendations-1)[-num_recommendations-1:]
-            top_indices = top_indices[np.argsort(similarity_scores[top_indices])][::-1][1:]
+            top_indices = (-similarity_scores).argsort()[1:num_recommendations+1]
             
-            return [int(self._anime_dataset.iloc[i]['anime_id']) for i in top_indices]
+            # Get anime IDs for recommendations
+            recommendation_ids = []
+            for idx in top_indices:
+                try:
+                    anime_id = int(self._anime_dataset.iloc[idx]['anime_id'])
+                    recommendation_ids.append(anime_id)
+                except Exception as e:
+                    logger.error(f"Error processing recommendation index {idx}: {str(e)}")
+                    continue
+            
+            return recommendation_ids
             
         except Exception as e:
             logger.error(f"Error getting recommendations: {str(e)}")
@@ -169,6 +203,8 @@ class AnimeRecommender:
     def search_anime(self, search_term):
         try:
             search_term = str(search_term).lower()
+            
+            # Search in both original and English names
             mask = (
                 self._anime_dataset['Name'].str.lower().str.contains(search_term, na=False) |
                 self._anime_dataset['English name'].str.lower().str.contains(search_term, na=False)
