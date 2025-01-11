@@ -26,6 +26,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
 from .viewsfunctions import seen, addanime, watched, createuser, updatewatchedgenre, reccanime
+from recc import AnimeRecommender
 # Create your views here.
 
 def index(request):
@@ -103,6 +104,7 @@ def lists(request):
 
 
 def animes(request, id):
+    recc = AnimeRecommender.get_instance()
     if request.user.is_authenticated:
         currentuser = Profile.objects.get(user=request.user)
         anime = anime_database.objects.get(id=id)
@@ -138,16 +140,17 @@ def animes(request, id):
                 addanime(currentuser, rating, anime_id)
                 return redirect('/animes/'+anime_id)
 
-
-
-
         saw = watched(currentuser, anime_id)
     else:
         saw = {}
     
     anime_example = anime_database.objects.get(id=id)
+    similar_anime_MAL_IDs = recc.get_recommendations(anime_example.MAL_ID, 5)
+    similar_anime_examples = []
+    for m_id in similar_anime_MAL_IDs:
+        similar_anime_examples.append(anime_database.objects.get(MAL_ID=m_id))
     #print(anime_example)
-    return render(request, 'individual_anime2.html',{'anime_example':anime_example, 'saw':saw})
+    return render(request, 'individual_anime2.html',{'anime_example':anime_example, 'saw':saw, 'similar_anime_examples': similar_anime_examples})
 
 @login_required
 @transaction.atomic
