@@ -76,11 +76,11 @@ class AnimeRecommender:
                        }
                    )
                    
-                  # Load pre-calculated similarity matrix
-                  logger.info("Loading similarity matrix...")
-                  npz_file = np.load(matrix_path)
-                  self._similarity_matrix = npz_file['arr_0']  # Load the first array from the npz file
-                  logger.info("Similarity matrix loaded successfully")
+                     # Load pre-calculated similarity matrix
+                     logger.info("Loading similarity matrix...")
+                     npz_file = np.load(matrix_path)
+                     self._similarity_matrix = npz_file['arr_0']  # Load the first array from the npz file
+                     logger.info("Similarity matrix loaded successfully")
                    
                except Exception as e:
                    logger.error(f"Error loading data: {str(e)}")
