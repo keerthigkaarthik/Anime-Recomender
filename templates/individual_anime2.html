@@ -43,8 +43,20 @@
           {% endif %}
           <div class = 'synopsis fade-in'>Synopsis: {{anime_example.synopsis}}</div>
       </div>
+        
 
-
+      <br>
+        <div>
+            {% for anime in similar_anime_examples %}
+              <h1>{{anime.name}}</h1>
+              <img src = '{{anime.picture}}' alt = 'picture of anime' class='fade-in'>
+              <div class = 'rating fade-in'><h3>Score: {{anime.score}}</h3></div>
+              <div class = 'type fade-in'><p>Type: {{anime.type_1}}</p></div>
+              <div class = 'release fade-in'><p>Release year: {{anime.releaseyear}}</p></div>
+              <div class = 'endyear fade-in'><p>End year: {{anime.endyear}}</p></div>
+              <div class = 'numofep fade-in'>Number of episodes: {{anime.numofep}}</div>
+            {% endfor %}
+        </div>
       <br>
       
       <div class="about-us fade-in" id = 'profile'>
