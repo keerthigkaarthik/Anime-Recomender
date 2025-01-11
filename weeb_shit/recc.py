@@ -46,8 +46,8 @@ class AnimeRecommender:
         if not self._initialized:
             try:
                 logger.info("Loading anime recommender data...")
-                base_path = Path(__file__).resolve().parent.parent  # Go up one level to reach the root
-                csv_path = base_path / 'CSVS' / 'anime.csv'  # Path to your anime.csv
+                base_path = Path(__file__).resolve().parent.parent
+                csv_path = base_path / 'CSVS' / 'anime.csv'
                 similarity_path = base_path / 'weeb_shit' / 'similarity_matrix.npy'
                 
                 # Load dataset
