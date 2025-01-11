@@ -103,54 +103,136 @@ def lists(request):
     return render(request, 'list_of_anime2.html', {'all_anime':all_anime, 'obj':obj})
 
 
-def animes(request, id):
-    recc = AnimeRecommender.get_instance()
-    if request.user.is_authenticated:
-        currentuser = Profile.objects.get(user=request.user)
-        anime = anime_database.objects.get(id=id)
-        anime_id = id
-        if request.method == 'POST':
-            add = request.POST.get('submit', False)
-            delete = request.POST.get('delete', False)
-            change = request.POST.get('Change', False)
-            print()
-            if add:
-                rating = request.POST.get('rating')
-                addanime(currentuser, rating, anime_id)
-                currentuser.favgenre()
-                print(currentuser.fav)
-                return redirect('/animes/'+ anime_id)
+# def animes(request, id):
+#     recc = AnimeRecommender.get_instance()
+#     if request.user.is_authenticated:
+#         currentuser = Profile.objects.get(user=request.user)
+#         anime = anime_database.objects.get(id=id)
+#         anime_id = id
+#         if request.method == 'POST':
+#             add = request.POST.get('submit', False)
+#             delete = request.POST.get('delete', False)
+#             change = request.POST.get('Change', False)
+#             print()
+#             if add:
+#                 rating = request.POST.get('rating')
+#                 addanime(currentuser, rating, anime_id)
+#                 currentuser.favgenre()
+#                 print(currentuser.fav)
+#                 return redirect('/animes/'+ anime_id)
 
-            elif delete:
-                currentuser.fivestars.animes.remove(anime)
-                currentuser.fourstars.animes.remove(anime)
-                currentuser.threestars.animes.remove(anime)
-                currentuser.twostars.animes.remove(anime)
-                currentuser.onestars.animes.remove(anime)
-                return redirect('/animes/'+anime_id)
+#             elif delete:
+#                 currentuser.fivestars.animes.remove(anime)
+#                 currentuser.fourstars.animes.remove(anime)
+#                 currentuser.threestars.animes.remove(anime)
+#                 currentuser.twostars.animes.remove(anime)
+#                 currentuser.onestars.animes.remove(anime)
+#                 return redirect('/animes/'+anime_id)
         
-            elif change:
-                currentuser.fivestars.animes.remove(anime)
-                currentuser.fourstars.animes.remove(anime)
-                currentuser.threestars.animes.remove(anime)
-                currentuser.twostars.animes.remove(anime)
-                currentuser.onestars.animes.remove(anime)
-                updatewatchedgenre(anime_id, currentuser, "remove")
-                rating = request.POST['rating']
-                addanime(currentuser, rating, anime_id)
-                return redirect('/animes/'+anime_id)
+#             elif change:
+#                 currentuser.fivestars.animes.remove(anime)
+#                 currentuser.fourstars.animes.remove(anime)
+#                 currentuser.threestars.animes.remove(anime)
+#                 currentuser.twostars.animes.remove(anime)
+#                 currentuser.onestars.animes.remove(anime)
+#                 updatewatchedgenre(anime_id, currentuser, "remove")
+#                 rating = request.POST['rating']
+#                 addanime(currentuser, rating, anime_id)
+#                 return redirect('/animes/'+anime_id)
 
-        saw = watched(currentuser, anime_id)
-    else:
-        saw = {}
+#         saw = watched(currentuser, anime_id)
+#     else:
+#         saw = {}
     
-    anime_example = anime_database.objects.get(id=id)
-    similar_anime_MAL_IDs = recc.get_recommendations(anime_example.MAL_ID, 5)
-    similar_anime_examples = []
-    for m_id in similar_anime_MAL_IDs:
-        similar_anime_examples.append(anime_database.objects.get(MAL_ID=m_id))
-    #print(anime_example)
-    return render(request, 'individual_anime2.html',{'anime_example':anime_example, 'saw':saw, 'similar_anime_examples': similar_anime_examples})
+#     anime_example = anime_database.objects.get(id=id)
+#     similar_anime_MAL_IDs = recc.get_recommendations(anime_example.MAL_ID, 5)
+#     similar_anime_examples = []
+#     for m_id in similar_anime_MAL_IDs:
+#         similar_anime_examples.append(anime_database.objects.get(MAL_ID=m_id))
+#     #print(anime_example)
+#     return render(request, 'individual_anime2.html',{'anime_example':anime_example, 'saw':saw, 'similar_anime_examples': similar_anime_examples})
+
+def animes(request, id):
+    try:
+        anime_example = anime_database.objects.get(id=id)
+        
+        # Initialize variables
+        saw = {}
+        similar_anime_examples = []
+        
+        # Handle authenticated user actions
+        if request.user.is_authenticated:
+            try:
+                currentuser = Profile.objects.get(user=request.user)
+                anime_id = id
+                
+                # Handle POST requests
+                if request.method == 'POST':
+                    add = request.POST.get('submit', False)
+                    delete = request.POST.get('delete', False)
+                    change = request.POST.get('Change', False)
+                    
+                    if add:
+                        rating = request.POST.get('rating')
+                        addanime(currentuser, rating, anime_id)
+                        currentuser.favgenre()
+                        return redirect(f'/animes/{anime_id}')
+                        
+                    elif delete:
+                        anime = anime_database.objects.get(id=id)
+                        # Remove from all star ratings
+                        for stars in ['fivestars', 'fourstars', 'threestars', 'twostars', 'onestars']:
+                            getattr(currentuser, stars).animes.remove(anime)
+                        return redirect(f'/animes/{anime_id}')
+                    
+                    elif change:
+                        anime = anime_database.objects.get(id=id)
+                        # Remove from all star ratings
+                        for stars in ['fivestars', 'fourstars', 'threestars', 'twostars', 'onestars']:
+                            getattr(currentuser, stars).animes.remove(anime)
+                        updatewatchedgenre(anime_id, currentuser, "remove")
+                        rating = request.POST['rating']
+                        addanime(currentuser, rating, anime_id)
+                        return redirect(f'/animes/{anime_id}')
+                
+                saw = watched(currentuser, anime_id)
+                
+            except Profile.DoesNotExist:
+                logger.error(f"Profile not found for user {request.user.id}")
+            except Exception as e:
+                logger.error(f"Error processing user actions: {str(e)}")
+        
+        # Get recommendations
+        try:
+            recc = AnimeRecommender.get_instance()
+            similar_anime_MAL_IDs = recc.get_recommendations(anime_example.MAL_ID, 5)
+            
+            if similar_anime_MAL_IDs:
+                similar_anime_examples = list(
+                    anime_database.objects.filter(MAL_ID__in=similar_anime_MAL_IDs)
+                )
+                
+        except Exception as e:
+            logger.error(f"Error getting recommendations: {str(e)}")
+            # Continue without recommendations if there's an error
+        
+        return render(
+            request, 
+            'individual_anime2.html',
+            {
+                'anime_example': anime_example,
+                'saw': saw,
+                'similar_anime_examples': similar_anime_examples
+            }
+        )
+        
+    except anime_database.DoesNotExist:
+        logger.error(f"Anime with id {id} not found")
+        return redirect('/')  # Redirect to home page if anime not found
+        
+    except Exception as e:
+        logger.error(f"Unexpected error in animes view: {str(e)}")
+        return redirect('/')
 
 @login_required
 @transaction.atomic
