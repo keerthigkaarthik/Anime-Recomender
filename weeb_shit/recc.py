@@ -110,6 +110,7 @@ class AnimeRecommender:
             
             # Get recommendations
             recommendations = []
+            recommendation_ids = []
             for anime_tuple in sorted_similarity_scores[1:num_recommendations + 1]:
                 index = anime_tuple[0]
                 similarity = anime_tuple[1]
@@ -117,8 +118,10 @@ class AnimeRecommender:
                 anime_details = self.get_anime_details(recommended_id)
                 anime_details['similarity_score'] = float(similarity)
                 recommendations.append(anime_details)
+                recommendation_ids.append(recommended_id)
                 
-            return input_anime, recommendations
+            #return input_anime, recommendations
+            return recommendation_ids
             
         except Exception as e:
             logger.error(f"Error getting recommendations: {str(e)}")
