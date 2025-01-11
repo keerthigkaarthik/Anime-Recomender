@@ -38,9 +38,9 @@ class AnimeRecommender:
                 ]
                 
                 possible_matrix_paths = [
-                    'weeb_shit/similarity_matrix.npy',
-                    '/app/weeb_shit/similarity_matrix.npy',
-                    'similarity_matrix.npy'
+                    'weeb_shit/similarity_matrix.npz',
+                    '/app/weeb_shit/similarity_matrix.npz',
+                    'similarity_matrix.npz'
                 ]
                 
                 for path in possible_csv_paths:
