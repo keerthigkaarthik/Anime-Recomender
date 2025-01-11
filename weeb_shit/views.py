@@ -28,6 +28,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from .viewsfunctions import seen, addanime, watched, createuser, updatewatchedgenre, reccanime
 from .recc import AnimeRecommender
 import logging
+
+logger = logging.getLogger(__name__)
 # Create your views here.
 
 def index(request):
