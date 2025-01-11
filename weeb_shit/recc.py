@@ -133,7 +133,7 @@ class AnimeRecommender:
                 raise Exception("Recommender not initialized")
             
             # Find the index for the given anime_id
-            matching_anime = self._anime_dataset[self._anime_dataset['MAL_ID'] == anime_id]
+            matching_anime = self._anime_dataset[self._anime_dataset['anime_id'] == anime_id]
             if matching_anime.empty:
                 logger.warning(f"No anime found with MAL_ID {anime_id}")
                 return []
