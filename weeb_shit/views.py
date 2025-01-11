@@ -26,7 +26,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
 from .viewsfunctions import seen, addanime, watched, createuser, updatewatchedgenre, reccanime
-from recc import AnimeRecommender
+from .recc import AnimeRecommender
 # Create your views here.
 
 def index(request):
