@@ -46,11 +46,12 @@ class AnimeRecommender:
         if not self._initialized:
             try:
                 logger.info("Loading anime recommender data...")
-                base_path = Path(__file__).resolve().parent
-                similarity_path = base_path / 'similarity_matrix.npy'
+                base_path = Path(__file__).resolve().parent.parent  # Go up one level to reach the root
+                csv_path = base_path / 'CSVS' / 'anime.csv'  # Path to your anime.csv
+                similarity_path = base_path / 'weeb_shit' / 'similarity_matrix.npy'
                 
                 # Load dataset
-                self._anime_dataset = pd.read_csv(str(base_path / 'anime-dataset-2023.csv'))
+                self._anime_dataset = pd.read_csv(str(csv_path))
                 
                 # Load or calculate similarity matrix
                 if similarity_path.exists():
