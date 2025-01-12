@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://your-project-name.up.railway.app']  # Replace with your actual domain
+CSRF_TRUSTED_ORIGINS = ['https://web-production-74f8d.up.railway.app']
 
 # Application definition
 
