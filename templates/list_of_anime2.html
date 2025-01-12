@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -169,4 +169,49 @@
         </script>
     </body>
     <script src = "{% static 'script.js' %}"></script>
-    </html>
+    </html> -->
+
+{% extends 'templates/main.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'list_of_anime10.css' %}">
+
+<div class="anime-catalog">
+    <div class="anime-grid">
+        {% for anime in all_anime %}
+        <a href="/animes/{{anime.id}}" class="anime-card">
+            <div class="card-image">
+                <img src="{{anime.picture}}" alt="{{anime.name}}" loading="lazy">
+                <div class="card-overlay">
+                    <span class="score">★ {{anime.score}}</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <h3 class="anime-title">{{anime.name}}</h3>
+                <div class="anime-meta">
+                    <span class="aired">{{anime.releaseyear}}</span>
+                    <span class="separator">•</span>
+                    <span class="episodes">{{anime.numofep}} eps</span>
+                </div>
+                <p class="synopsis">{{anime.synopsis|truncatechars:150}}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<footer class="page-footer">
+    <div class="contact-section">
+        <h2>Contact us</h2>
+        <div class="contact-info">
+            <p>anthonyhermanto1@gmail.com</p>
+            <p>kaarthik4445556663@gmail.com</p>
+        </div>
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        </div>
+    </div>
+</footer>
+{% endblock %}
