@@ -228,7 +228,7 @@ def animes(request, id):
 
         if (similar_anime_examples == []):
             genres = anime_example.genre.replace(",","").split()
-            similar_anime_examples = Anime.objects.filter(reduce(operator.and_, [Q(genres__contains=[genre]) for genre in genres])).order_by('-score')[:5]
+            similar_anime_examples = anime_database.objects.filter(reduce(operator.and_, [Q(genres__contains=[genre]) for genre in genres])).order_by('-score')[:5]
         
         return render(
             request, 
