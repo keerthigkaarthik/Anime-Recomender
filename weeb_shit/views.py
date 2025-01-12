@@ -28,6 +28,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from .viewsfunctions import seen, addanime, watched, createuser, updatewatchedgenre, reccanime
 from .recc import AnimeRecommender
 import logging
+from django.db.models import Q
+from functools import reduce
+import operator
 
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -222,6 +225,10 @@ def animes(request, id):
         except Exception as e:
             logger.error(f"Error getting recommendations: {str(e)}, error from view")
             # Continue without recommendations if there's an error
+
+        if (similar_anime_examples == []):
+            genres = anime_example.genre.replace(",","").split()
+            similar_anime_examples = Anime.objects.filter(reduce(operator.and_, [Q(genres__contains=[genre]) for genre in genres])).order_by('-score')[:5]
         
         return render(
             request, 
