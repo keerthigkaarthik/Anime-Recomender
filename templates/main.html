@@ -52,18 +52,6 @@
                             
                         </li>
                         <li>
-                            {% if user.is_authenticated %}
-                            <div style="display: flex; gap: 0.5rem; align-items:center;">
-                            <a href="/profile" class = 'profile'>Profile</a>
-
-                            
-                            <form method = 'POST' action = '/recommend'>
-                                {% csrf_token %}
-                            
-                                <input type="submit" name="recommend" value ="recommend" id="recommend">
-                            </form>
-                        </div>
-                            {% endif %}
                         </li>
                         <li>
                             {% if user.is_authenticated %}
