@@ -1,522 +1,172 @@
-*{
-    margin: 0;
-    padding: 0;
+.profile-container {
+    max-width: 1200px;
+    margin: 5rem auto 2rem;
+    padding: 0 1rem;
 }
 
-header{
-    height: auto;
-    background-color: rgba(0, 0, 0, 7);
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-}
-
-
-.logo {
-    font-family: 'Shizuru', cursive;
-    display: flex;
-    font-size: 3.5rem;
-    width: auto;
-    height: auto;
-}
-
-.logo a{
+.message {
+    background-color: #4CAF50;
     color: white;
-    text-decoration: none;
-    
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
-.nav_bar{
-    font-family: 'poppins';
-    font-size: 1.5rem;
-    list-style: none;
-    display: flex;
-    margin-left: auto;
-    flex-direction: row;
-    margin-top: auto;
+/* Profile Header */
+.profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.nav_bar li{
+.profile-info h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.profile-details {
+    margin-bottom: 1.5rem;
+}
+
+.profile-details p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.profile-details span {
+    font-weight: 600;
+    margin-right: 0.5rem;
+    opacity: 0.9;
+}
+
+.edit-profile-btn {
     display: inline-block;
-    list-style: none;
-}
-
-.nav_bar li a{
-    padding: 1.25rem;
-    width: auto;
-    height: auto;
-}
-
-.nav_bar li a:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
     text-decoration: none;
-    color: tomato;
+    transition: background-color 0.2s;
 }
 
-.profile,
-.login {
-    font-family: 'Lobster',cursive;
-    width: auto;
-    height: auto;
+.edit-profile-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    color: white;
 }
 
-.anime_to_watch {
-  padding-left: 2rem;
+/* Tier List */
+.tier-list-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.tier-list table{
-    position:absolute;
-    top: 20%;
-    left: 20%;
-    width: 60%;
-    border: 2px solid black;
+.tier-list-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
 }
 
-.tier-list td{
- border: 2px solid black;
- background-color: rgb(40,40,40);
- color: white;
- font-size: 150%;
+.tier {
+    display: flex;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-#score5 {
-    background-color: red;
-    width: 8.3%;
-    text-align: center;
-    padding: 2em;
+.tier-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
 }
 
-#score4{
-    background-color: salmon;
-    width: 8.3%;
-    text-align: center;
-    padding: 2em;
+.tier-content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    min-height: 120px;
 }
 
-#score3{
-    background-color: orange;
-    width: 8.3%;
-    text-align: center;
-    padding: 2em;
-}
-
-#score2{
-    background-color: blue;
-    width: 8.3%;
-    text-align: center;
-    padding: 2em;
-}
-
-#score1{
-    background-color: green;
-    width: 8.3%;
-    text-align: center;
-    padding: 2em;
-}
-
-#anime5,
-#anime4,
-#anime3,
-#anime2,
-#anime1{
-    width: 91.7%;
-}
-
-#ani5{
-    width: 33%;
-    text-align: left;
-}
-
-.autocomplete-input {
-    width: 330px;
-}
-
-.results {
-    margin-bottom: -170px;
-    z-index: 1000;
-    width: 330px;
-    height: 150px;
-    overflow-y: scroll;
-}
-
-.autocomplete_result {
-    background-color: white;
-    height: 100px;
-    width: 310px;
-    border: 2px solid black;
-    border-radius: 5px;
-}
-
-.autocomplete_result:hover {
-    background-color: lightblue;
-}
-
-.autocomplete_result img {
-    /* position: absolute;
-    left: 0%; */
-    /* margin-right: 25px; */
-    float: left;
-    padding: 5px;
-    vertical-align: middle;
-}
-
-.autocomplete_result h6 {
+.anime-thumbnail {
+    cursor: pointer;
+    transition: transform 0.2s;
     position: relative;
-    top: 5%;
-    left: auto;
-    color: black;
-    text-decoration: none;
 }
 
-.autocomplete_result p {
-    position: relative;
-    bottom: 5%;
-    left: auto;
-    color: black;
-    text-decoration: none;
+.anime-thumbnail:hover {
+    transform: scale(1.05);
 }
 
-
-.tier-list img{
-    z-index: 5000;
-    width: 10%;
-    height: 100%;
-    object-fit: contain;
+.anime-thumbnail img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
-.text-flicker-in-glow {
-	-webkit-animation: text-flicker-in-glow 4s linear both;
-	        animation: text-flicker-in-glow 4s linear both;
+/* Tier Colors */
+.tier-5 .tier-label { background-color: #ff4d4d; }
+.tier-4 .tier-label { background-color: #ff9966; }
+.tier-3 .tier-label { background-color: #ffcc00; }
+.tier-2 .tier-label { background-color: #4dabf7; }
+.tier-1 .tier-label { background-color: #51cf66; }
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* ----------------------------------------------
- * Generated by Animista on 2022-2-17 21:59:38
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-/**
- * ----------------------------------------
- * animation text-flicker-in-glow
- * ----------------------------------------
- */
- @-webkit-keyframes text-flicker-in-glow {
-    0% {
-      opacity: 0;
-    }
-    10% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    10.1% {
-      opacity: 1;
-      text-shadow: none;
-    }
-    10.2% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    20% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    20.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
-    }
-    20.6% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    30% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    30.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    30.5% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    30.6% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    45% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    45.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    50% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    55% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    55.1% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    57% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    57.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
-    }
-    60% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
-    }
-    60.1% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    65% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    65.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    75% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    75.1% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    77% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    77.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    85% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    85.1% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    86% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    86.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    100% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-  }
-  @keyframes text-flicker-in-glow {
-    0% {
-      opacity: 0;
-    }
-    10% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    10.1% {
-      opacity: 1;
-      text-shadow: none;
-    }
-    10.2% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    20% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    20.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
-    }
-    20.6% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    30% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    30.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    30.5% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    30.6% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    45% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    45.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    50% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    55% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
-    }
-    55.1% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    57% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    57.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
-    }
-    60% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
-    }
-    60.1% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    65% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    65.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    75% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    75.1% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    77% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    77.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    85% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    85.1% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    86% {
-      opacity: 0;
-      text-shadow: none;
-    }
-    86.1% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-    100% {
-      opacity: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
-    }
-  }
-  
-
-  .text-shadow-drop-center {
-    -webkit-animation: text-shadow-drop-center 0.6s both;
-            animation: text-shadow-drop-center 0.6s both;
-  }
-
-  /* ----------------------------------------------
- * Generated by Animista on 2022-2-17 22:6:51
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-/**
- * ----------------------------------------
- * @animation text-shadow-drop-center
- * ----------------------------------------
- */
-@-webkit-keyframes text-shadow-drop-center {
-  0% {
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    text-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
-  }
-}
-@keyframes text-shadow-drop-center {
-  0% {
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    text-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
-  }
+.profile-header,
+.tier-list-container {
+    animation: fadeIn 0.5s ease-out;
 }
 
-.color-change-2x {
-	-webkit-animation: color-change-2x 2s linear infinite alternate both;
-	        animation: color-change-2x 2s linear infinite alternate both;
-  height: 100vh;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        margin-top: 4rem;
+    }
+
+    .profile-header {
+        padding: 1.5rem;
+    }
+
+    .tier {
+        flex-direction: column;
+    }
+
+    .tier-label {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .tier-content {
+        justify-content: center;
+    }
+
+    .anime-thumbnail img {
+        width: 70px;
+        height: 105px;
+    }
 }
 
-/* ----------------------------------------------
- * Generated by Animista on 2022-2-17 22:13:36
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-/**
- * ----------------------------------------
- * animation color-change-2x
- * ----------------------------------------
- */
- @-webkit-keyframes color-change-2x {
-  0% {
-    background: #19dcea;
-  }
-  100% {
-    background: #b22cff;
-  }
-}
-@keyframes color-change-2x {
-  0% {
-    background: #19dcea;
-  }
-  100% {
-    background: #b22cff;
-  }
+/* Optional Gradient Background */
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
 }
