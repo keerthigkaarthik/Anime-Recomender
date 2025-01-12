@@ -1,99 +1,93 @@
 {% extends 'templates/main.html' %}
 {% block content %}
 {% load static %}
+<link rel='stylesheet' type="text/css" href="{% static 'profile12.css' %}">
 
-    <link rel='stylesheet' type="text/css" href="{% static 'profile12.css' %}">
-    <div class="color-change-2x">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<div class="profile-container">
     {% for message in messages %}
-    <h2>{{message}}</h2>
+        <div class="message">{{message}}</div>
     {% endfor %}
-    <div class ='submit_anime_rating'>
-        <h2>Update profile <a href = '/update'class='curve'>Here</a></h2>
+
+    <div class="profile-header">
+        <div class="profile-info">
+            <h1>Profile: {{user.username}}</h1>
+            <div class="profile-details">
+                <p><span>Bio:</span> {{user.profile.bio}}</p>
+                <p><span>Birth Date:</span> {{user.profile.birth_date}}</p>
+                <p><span>Location:</span> {{user.profile.location}}</p>
+            </div>
+            <a href="/update" class="edit-profile-btn">Edit Profile</a>
+        </div>
     </div>
-    <div class="tier-list">
-        <table >
-            <tr>
-                <td id="score5">
-                    5
-                </td>
-                    
-                <td id="anime5">
+
+    <div class="tier-list-container">
+        <h2>Anime Ratings</h2>
+        <div class="tier-list">
+            <div class="tier tier-5">
+                <div class="tier-label">
+                    <span>5</span>
+                </div>
+                <div class="tier-content">
                     {% for i in five %}
-                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                        <div class="anime-thumbnail" onclick="window.location='/animes/{{i.id}}'">
+                            <img src='{{i.picture}}' alt="{{i.name}}">
+                        </div>
                     {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <td id="score4">
-                    4
-                </td>
-                <td id="anime4">
+                </div>
+            </div>
+
+            <div class="tier tier-4">
+                <div class="tier-label">
+                    <span>4</span>
+                </div>
+                <div class="tier-content">
                     {% for i in four %}
-                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                        <div class="anime-thumbnail" onclick="window.location='/animes/{{i.id}}'">
+                            <img src='{{i.picture}}' alt="{{i.name}}">
+                        </div>
                     {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <td id="score3">
-                    3
-                </td>
-                    
-                <td id="anime3">
+                </div>
+            </div>
+
+            <div class="tier tier-3">
+                <div class="tier-label">
+                    <span>3</span>
+                </div>
+                <div class="tier-content">
                     {% for i in three %}
-                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                        <div class="anime-thumbnail" onclick="window.location='/animes/{{i.id}}'">
+                            <img src='{{i.picture}}' alt="{{i.name}}">
+                        </div>
                     {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <td id="score2">
-                    2
-                </td>
-                    
-                <td id="anime2">
+                </div>
+            </div>
+
+            <div class="tier tier-2">
+                <div class="tier-label">
+                    <span>2</span>
+                </div>
+                <div class="tier-content">
                     {% for i in two %}
-                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
+                        <div class="anime-thumbnail" onclick="window.location='/animes/{{i.id}}'">
+                            <img src='{{i.picture}}' alt="{{i.name}}">
+                        </div>
                     {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <td id="score1">
-                    1
-                </td>
-                    
-                <td id="anime1">
+                </div>
+            </div>
+
+            <div class="tier tier-1">
+                <div class="tier-label">
+                    <span>1</span>
+                </div>
+                <div class="tier-content">
                     {% for i in one %}
-                        <img src='{{i.picture}}' onclick="window.location='/animes/{{i.id}}'">
-                        
+                        <div class="anime-thumbnail" onclick="window.location='/animes/{{i.id}}'">
+                            <img src='{{i.picture}}' alt="{{i.name}}">
+                        </div>
                     {% endfor %}
-                </td>
-            </tr>
-        </table>
-        <div class = 'anime_to_watch'>
-            <h2>Profile: </h2>
-            <div class = 'anime_to_watch1'>
-             <p class="text-shadow-drop-center">Username: <span class = "text-flicker-in-glow">{{user.username}}</span></p>
+                </div>
             </div>
-            
-            <div class = 'anime_to_watch1'>
-              <p class="text-shadow-drop-center">Bio:  <span class="text-flicker-in-glow">{{user.profile.bio}}</span></p> 
-            </div>
-  
-            <div class = 'anime_to_watch1'>
-              <p class="text-shadow-drop-center">Birth_date: <span class="text-flicker-in-glow">{{user.profile.birth_date}}</span></p>
-            </div>
-  
-            <div class = 'anime_to_watch1'>
-              <p class="text-shadow-drop-center">Location: <span class="text-flicker-in-glow">{{user.profile.location}}</span></p>
-            </div>
-            
-            
-        </div>   
-            
+        </div>
     </div>
-    </div>
+</div>
 {% endblock %}
