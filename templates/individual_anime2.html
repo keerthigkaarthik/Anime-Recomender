@@ -6,16 +6,16 @@
     <br>
     <br>
     <br>
-      <div class = 'individual_anime'>
-          <h1>{{anime_example.name}}</h1>
-          <img src = '{{anime_example.picture}}' alt = 'picture of anime' class='fade-in'>
-          <div class = 'rating fade-in'><h3>Score: {{anime_example.score}}</h3></div>
-          <div class = 'type fade-in'><p>Type: {{anime_example.type_1}}</p></div>
-          <div class = 'release fade-in'><p>Release year: {{anime_example.releaseyear}}</p></div>
-          <div class = 'endyear fade-in'><p>End year: {{anime_example.endyear}}</p></div>
-          <div class = 'numofep fade-in'>Number of episodes: {{anime_example.numofep}}</div>
-          {% if user.is_authenticated %}
-            <form method = 'POST' action = ''>
+    <div class='individual_anime'>
+        <h1>{{anime_example.name}}</h1>
+        <img src='{{anime_example.picture}}' alt='picture of anime' class='fade-in'>
+        <div class='rating fade-in'><h3>Score: {{anime_example.score}}</h3></div>
+        <div class='type fade-in'><p>Type: {{anime_example.type_1}}</p></div>
+        <div class='release fade-in'><p>Release year: {{anime_example.releaseyear}}</p></div>
+        <div class='endyear fade-in'><p>End year: {{anime_example.endyear}}</p></div>
+        <div class='numofep fade-in'>Number of episodes: {{anime_example.numofep}}</div>
+        {% if user.is_authenticated %}
+            <form method='POST' action=''>
               {% csrf_token %}
               {% if saw == False %}
               <label for="rating">Rate this anime:</label>
@@ -26,7 +26,7 @@
                 <option value="2">2</option>
                 <option value="1">1</option>
               </select>
-              <input type="submit" name = 'submit' id='submit' value="Rate">
+              <input type="submit" name='submit' id='submit' value="Rate">
               {% else %}
               <input type="submit" name='delete' id='delete' value="Remove from favourites">
               <label for="rating">Change the rating:</label>
@@ -37,36 +37,37 @@
                 <option value="2">2</option>
                 <option value="1">1</option>
               </select>
-              <input type="submit" id = 'Change' name='Change' value="Change Rating">
+              <input type="submit" id='Change' name='Change' value="Change Rating">
               {% endif %}
             </form>
-          {% endif %}
-          <div class = 'synopsis fade-in'>Synopsis: {{anime_example.synopsis}}</div>
-      </div>
+        {% endif %}
+        <div class='synopsis fade-in'>Synopsis: {{anime_example.synopsis}}</div>
+    </div>
         
-
-      <br>
-        <div>
-            {% for anime in similar_anime_examples %}
-              <h1>{{anime.name}}</h1>
-              <img src = '{{anime.picture}}' alt = 'picture of anime' class='fade-in'>
-              <div class = 'rating fade-in'><h3>Score: {{anime.score}}</h3></div>
-              <div class = 'type fade-in'><p>Type: {{anime.type_1}}</p></div>
-              <div class = 'release fade-in'><p>Release year: {{anime.releaseyear}}</p></div>
-              <div class = 'endyear fade-in'><p>End year: {{anime.endyear}}</p></div>
-              <div class = 'numofep fade-in'>Number of episodes: {{anime.numofep}}</div>
-            {% endfor %}
+    <br>
+    <h2>Similar Anime</h2>
+    <div class="similar-anime-container">
+        {% for anime in similar_anime_examples %}
+        <div class="similar-anime-card">
+            <h3>{{anime.name}}</h3>
+            <img src='{{anime.picture}}' alt='picture of anime' class='fade-in'>
+            <div class='rating fade-in'><h4>Score: {{anime.score}}</h4></div>
+            <div class='type fade-in'><p>Type: {{anime.type_1}}</p></div>
+            <div class='release fade-in'><p>Release year: {{anime.releaseyear}}</p></div>
+            <div class='endyear fade-in'><p>End year: {{anime.endyear}}</p></div>
+            <div class='numofep fade-in'>Number of episodes: {{anime.numofep}}</div>
         </div>
-      <br>
-      
-      <div class="about-us fade-in" id = 'profile'>
+        {% endfor %}
+    </div>
+    
+    <br>
+    <div class="about-us fade-in" id='profile'>
         <h2>Contact us at: </h2>
         <p>kaarthik4445556663@gmail.com</p>
-      </div>
-
-      <div class = 'footer'>
+    </div>
+    <div class='footer'>
         <i class="fab fa-github" aria-hidden="true"></i>
         <i class="fab fa-google"></i>
         <i class="fab fa-twitter"></i>
-      </div>
+    </div>
 {% endblock %}
