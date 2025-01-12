@@ -1,73 +1,105 @@
 {% extends 'templates/main.html' %}
 {% block content %}
 {% load static %}
-    <link rel='stylesheet' type="text/css" href="{% static 'individual_anime2.css' %}">
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class='individual_anime'>
-        <h1>{{anime_example.name}}</h1>
-        <img src='{{anime_example.picture}}' alt='picture of anime' class='fade-in'>
-        <div class='rating fade-in'><h3>Score: {{anime_example.score}}</h3></div>
-        <div class='type fade-in'><p>Type: {{anime_example.type_1}}</p></div>
-        <div class='release fade-in'><p>Release year: {{anime_example.releaseyear}}</p></div>
-        <div class='endyear fade-in'><p>End year: {{anime_example.endyear}}</p></div>
-        <div class='numofep fade-in'>Number of episodes: {{anime_example.numofep}}</div>
-        {% if user.is_authenticated %}
-            <form method='POST' action=''>
-              {% csrf_token %}
-              {% if saw == False %}
-              <label for="rating">Rate this anime:</label>
-              <select name="rating" id="rating">
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-              </select>
-              <input type="submit" name='submit' id='submit' value="Rate">
-              {% else %}
-              <input type="submit" name='delete' id='delete' value="Remove from favourites">
-              <label for="rating">Change the rating:</label>
-              <select name="rating" id="rating">
-                <option value="5">5</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1</option>
-              </select>
-              <input type="submit" id='Change' name='Change' value="Change Rating">
-              {% endif %}
-            </form>
-        {% endif %}
-        <div class='synopsis fade-in'>Synopsis: {{anime_example.synopsis}}</div>
+<link rel='stylesheet' type="text/css" href="{% static 'individual_anime2.css' %}">
+
+<div class="container">
+    <!-- Main Anime Section -->
+    <div class="main-anime-card">
+        <div class="anime-flex">
+            <div class="anime-image">
+                <img src='{{anime_example.picture}}' alt='{{anime_example.name}}' class='fade-in'>
+            </div>
+            <div class="anime-details">
+                <h1>{{anime_example.name}}</h1>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <h3>Score</h3>
+                        <p class="score">{{anime_example.score}}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Episodes</h3>
+                        <p>{{anime_example.numofep}}</p>
+                    </div>
+                </div>
+                <div class="info-list">
+                    <p><span>Type:</span> {{anime_example.type_1}}</p>
+                    <p><span>Release:</span> {{anime_example.releaseyear}}</p>
+                    <p><span>End year:</span> {{anime_example.endyear}}</p>
+                </div>
+                
+                {% if user.is_authenticated %}
+                <form method='POST' action='' class="rating-form">
+                    {% csrf_token %}
+                    {% if saw == False %}
+                    <div class="form-group">
+                        <label for="rating">Rate this anime:</label>
+                        <select name="rating" id="rating">
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                        <button type="submit" name="submit" class="btn btn-primary">Rate</button>
+                    </div>
+                    {% else %}
+                    <div class="form-group">
+                        <button type="submit" name="delete" class="btn btn-danger">Remove from favourites</button>
+                        <div class="rating-change">
+                            <label for="rating">Change the rating:</label>
+                            <select name="rating" id="rating">
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1</option>
+                            </select>
+                            <button type="submit" name="Change" class="btn btn-success">Update Rating</button>
+                        </div>
+                    </div>
+                    {% endif %}
+                </form>
+                {% endif %}
+                
+                <div class="synopsis">
+                    <h3>Synopsis</h3>
+                    <p>{{anime_example.synopsis}}</p>
+                </div>
+            </div>
+        </div>
     </div>
-        
-    <br>
+
+    <!-- Similar Anime Section -->
     <h2>Similar Anime</h2>
     <div class="similar-anime-container">
         {% for anime in similar_anime_examples %}
         <div class="similar-anime-card">
-            <h3>{{anime.name}}</h3>
-            <img src='{{anime.picture}}' alt='picture of anime' class='fade-in'>
-            <div class='rating fade-in'><h4>Score: {{anime.score}}</h4></div>
-            <div class='type fade-in'><p>Type: {{anime.type_1}}</p></div>
-            <div class='release fade-in'><p>Release year: {{anime.releaseyear}}</p></div>
-            <div class='endyear fade-in'><p>End year: {{anime.endyear}}</p></div>
-            <div class='numofep fade-in'>Number of episodes: {{anime.numofep}}</div>
+            <img src='{{anime.picture}}' alt='{{anime.name}}' class='fade-in'>
+            <div class="card-content">
+                <h3>{{anime.name}}</h3>
+                <div class="anime-info">
+                    <p class="score">Score: {{anime.score}}</p>
+                    <p>Type: {{anime.type_1}}</p>
+                    <p>Episodes: {{anime.numofep}}</p>
+                    <p>Release: {{anime.releaseyear}}</p>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
-    
-    <br>
-    <div class="about-us fade-in" id='profile'>
-        <h2>Contact us at: </h2>
-        <p>kaarthik4445556663@gmail.com</p>
-    </div>
-    <div class='footer'>
-        <i class="fab fa-github" aria-hidden="true"></i>
-        <i class="fab fa-google"></i>
-        <i class="fab fa-twitter"></i>
-    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="contact">
+            <h2>Contact us</h2>
+            <p>kaarthik4445556663@gmail.com</p>
+        </div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-google"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+</div>
 {% endblock %}
