@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://web-production-74f8d.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['anime-recomender-production.up.railway.app']
 
 # Application definition
 
