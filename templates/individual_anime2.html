@@ -77,7 +77,7 @@
     <h2>Similar Anime</h2>
     <div class="similar-anime-container">
         {% for anime in similar_anime_examples %}
-        <a href="/animes/${anime.id}">
+        <a href="/animes/{{anime.id}}">
         <div class="similar-anime-card">
             <img src='{{anime.picture}}' alt='{{anime.name}}' class='fade-in'>
             <div class="card-content">
