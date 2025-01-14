@@ -174,24 +174,20 @@ def animes(request, id):
                 
                 # Handle POST requests
                 if request.method == 'POST':
-                    add = request.POST.get('submit', False)
-                    delete = request.POST.get('delete', False)
-                    change = request.POST.get('Change', False)
                     
-                    if add:
+                    if 'submit' in request.POST:
                         rating = request.POST.get('rating')
                         addanime(currentuser, rating, anime_id)
-                        currentuser.favgenre()
                         return redirect(f'/animes/{anime_id}')
                         
-                    elif delete:
+                    elif 'delete' in request.POST:
                         anime = anime_database.objects.get(id=id)
                         # Remove from all star ratings
                         for stars in ['fivestars', 'fourstars', 'threestars', 'twostars', 'onestars']:
                             getattr(currentuser, stars).animes.remove(anime)
                         return redirect(f'/animes/{anime_id}')
                     
-                    elif change:
+                    elif 'change' in request.POST:
                         anime = anime_database.objects.get(id=id)
                         # Remove from all star ratings
                         for stars in ['fivestars', 'fourstars', 'threestars', 'twostars', 'onestars']:
